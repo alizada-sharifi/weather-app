@@ -10,7 +10,7 @@ const cityName = document.getElementById("city");
 const humidity = document.getElementById("humidity-percentage");
 const wind = document.getElementById("wind-speed");
 const errorMessage = document.getElementById("error");
-// ===== global var and const
+// // ===== global var and const
 const apiKey = "4f0e9a2e0a3b0f51ad07bf2edee3aac5";
 const apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=`;
 
@@ -48,9 +48,13 @@ async function checkWeather(city) {
 }
 function showCity(e) {
   e.preventDefault();
-  cityName.textContent = `${search.value}`;
-  checkWeather(search.value);
-  search.value = "";
+  if (search.value.length === 0) {
+    return alert("Please Type The City Name");
+  } else {
+    cityName.textContent = `${search.value}`;
+    checkWeather(search.value);
+    search.value = "";
+  }
 }
-// ======== eventListener ========
+// // ======== eventListener ========
 form.addEventListener("submit", showCity);
